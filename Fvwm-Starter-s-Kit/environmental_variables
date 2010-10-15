@@ -1,0 +1,31 @@
+#  This file sets environmental variables
+#
+#  Path to scripts folder:
+#
+
+SetEnv fvwm_script $[FVWM_USERDIR]/scripts
+
+#
+#  Please set your preferred applications
+#  to list in the desktop menu, launch with
+#  hotkeys etc.:
+
+SetEnv fvwm_editor gedit
+SetEnv fvwm_filemanager nautilus
+SetEnv fvwm_browser firefox
+SetEnv fvwm_mail claws-mail
+SetEnv fvwm_im pidgin
+SetEnv fvwm_image_viewer viewnior
+SetEnv fvwm_terminal urxvt
+SetEnv fvwm_player sonata
+SetEnv fvwm_runner gmrun
+SetEnv fvwm_icons Faenza-Mint
+SetEnv fvwm_theme brown
+
+#  fvwm's reserved variable for paths
+#  to all images folders it has to deal
+#  with. You can use images from any other
+#  folders in your configuration, but it is 
+#  easier to set them here:
+
+ImgPath $[FVWM_USERDIR]/themes/$[fvwm_theme]/decorations:+:$[FVWM_USERDIR]/icons

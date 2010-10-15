@@ -1,0 +1,152 @@
+#  Once you wrote a function, you 
+#  can invoke it from anywhere in
+#  your fvwm config and bind it
+#  to hotkey or mouse or window
+#  decoration button.
+#  
+#  Binding functions to keys and
+#  buttons is described in keybindings_and_mouse
+#  file. Detailed explanation of
+#  functions syntax can be found in
+#  fvwm beginner's guide or in a
+#  manual.
+#  
+#  Here are some functions most
+#  stacking window managers users
+#  would like to work out of the box:
+
+
+#  Close window - for titlebar button
+#  and keybinding
+
+DestroyFunc DeleteWin
+AddToFunc DeleteWin
++ I Delete
+
+#  Fully maximize window
+
+DestroyFunc FullMaxWin
+AddToFunc FullMaxWin
++ I Maximize 100 100
+
+#  Iconify and deiconify window
+
+DestroyFunc IconWin
+AddToFunc IconWin
++ I Iconify
+
+#  Maximize window on doubleclick 
+
+DestroyFunc MaxTitle
+AddToFunc MaxTitle
++ D Maximize 100 100 
+
+#  Toggle 'always on top'
+
+DestroyFunc WinOnTop
+AddToFunc WinOnTop
++ I ThisWindow (Layer 6) Layer
++ I TestRc (NoMatch) Layer 0 6
+
+#  This one makes screenshot:
+
+DestroyFunc FvwmDesktopScreenshot
+AddToFunc   FvwmDesktopScreenshot
++ I Exec import -window root -quality 100 -silent   "screenshot-`date +%F[%T]`.png"
+
+#  And here is some more or less
+#  fancy stuff:
+
+
+#  Autoshade functions set. It mimics
+#  Kwin autoshade feature: definite
+#  window unshades when cursor is 
+#  over the titlebar, stays unshaded
+#  while cursor is in the window and
+#  shades when it leaves.
+#  
+#  It also showcases fvwm State command,
+#  setting and checking window states
+#  and performing actions on windows 
+#  having this or that state along with
+#  FvwmAuto module.
+#  
+#  You can define up to 32 states (0-31)
+#  
+#  In this config State 0 is reserved for
+#  autoshade function
+
+DestroyFunc ToggleAutoshaded
+AddToFunc ToggleAutoshaded
++ I State 0
+
+DestroyFunc AutoShade
+AddToFunc AutoShade
++ I ThisWindow (State 0) WindowShade True
+
+DestroyFunc AutoUnshade
+AddToFunc AutoUnshade
++ I ThisWindow (State 0) WindowShade False
+
+Module FvwmAuto 0 -menter "Silent AutoUnshade" "Silent AutoShade"
+
+#  This is a "Smart Launcher": bind it to
+#  a hotkey and it would launch an application
+#  if it is not running, raise its window if it's
+#  running and switch between given applications 
+#  windows if you have two or more of them.
+#
+#  Call this function with parameters:
+#  LaunchRaiseSwitch *gedit* gedit
+#  LaunchRaiseSwitch *Namoroka firefox
+#
+#  The first parameter stands for window 
+#  name the function should react on 
+#  (see manuals section about keybindings
+#  for more detailed description of these
+#  conditions) and the second - for an 
+#  application to launch.
+#
+#  See chapter 29 of fvwm manual for explanation
+#  of command expansion for the list of 
+#  parameters you can give to functions.
+
+DestroyFunc LaunchRaiseSwitch
+AddToFunc LaunchRaiseSwitch
++ I None (*$0*) Exec exec $1
++ I Next (*$0*) Focus
+
+Module FvwmAuto 0 -mfocus "Silent Raise" 
+
+Key F A 4 Function LaunchRaiseSwitch Namoroka Firefox
+
+#  This function is written to mimic tilda,
+#  yakuake and such. Parameters are your 
+#  terminal of choice, window name given 
+#  to them at start so that the function
+#  can tell quake-like window from the 
+#  others (refer to your terminal's manual 
+#  for the exact option), width, height, x 
+#  and y position of upper left corner.
+#
+#  Example:
+#  Key Q A 4 QLikeLaunch urxvt quake-term 812 360 275 0
+#
+#  Undecorate the window by adding something
+#  like this:
+#  Style "quake-term" !Title, !Handles, !Borders, !Icon, WindowListSkip
+
+
+DestroyFunc QLikeLaunch
+AddToFunc QLikeLaunch
++ I None ($1, CurrentDesk) Exec exec $0 -name $1
++ I All ($1) ResizeMove $2p $3p $4p $5p
++ I All ($1) Stick True
++ I All ($1, CurrentDesk) Iconify
+
+DestroyFunc QLikeFvwmConsole
+AddToFunc QLikeFvwmConsole
++ I None (FvwmConsole, CurrentDesk) FvwmConsole -terminal urxvt
++ I All (FvwmConsole) ResizeMove $0p $1p $2p $3p
++ I All (FvwmConsole) Stick True
++ I All (FvwmConsole, CurrentDesk) Iconify

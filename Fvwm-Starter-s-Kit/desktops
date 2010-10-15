@@ -1,0 +1,25 @@
+#  fvwm allows you to use any (reasonable)
+#  number of virtual desktops, n*m pages
+#  (equal to screen sise) each. Desctop 
+#  numeration starts from zero.
+#  
+#  Make as much desktops as you need of 
+#  whatever size you like and name them 
+#  as shown below or leave this file as it
+#  is to stick with one 2*1 pages 
+#  desktop for a while.
+
+DesktopSize 2x1 
+Desktop 0 Main
+
+#  If you use multiple paged desktops, consider to
+#  define the scroll 'step' (EdgeScroll), time the
+#  mouse cursor should spend by the edge of the screen
+#  to skip to the next page (EdgeResistance) and 
+#  the edge thickness in pixels. 
+#  Set edge thickness to zero to avoid mouse 
+#  page switching
+
+EdgeScroll 100 100
+EdgeResistance 400 400 
+EdgeThickness 1

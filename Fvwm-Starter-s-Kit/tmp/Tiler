@@ -1,0 +1,8 @@
+DestroyModuleConfig Tiler: *
+*Tiler: Rows 2
+*Tiler: Columns 2
+*Tiler: BoxSize smart
+*Tiler: Geometry 1000x700
+*Tiler: (1x2, Swallow(UseOld,NoKill,NoClose) 'tartan@asus:~/.fvwm/scripts'
+*Tiler: (1x1, Swallow(UseOld,NoKill,NoClose) 'FvwmConsole'
+*Tiler: (1x1, Swallow(UseOld,NoKill,NoClose) 'tartan - File Browser'

@@ -1,0 +1,29 @@
+#  This is the main configuration file.
+#  
+#  In this setup it only contains links
+#  to smaller files, each concerning 
+#  several aspects of WM behaviour.
+#  
+#  I believe this provides better
+#  readability and makes configuration
+#  easier.
+
+Read $[FVWM_USERDIR]/environmental_variables
+Read $[FVWM_USERDIR]/general_settings
+Read $[FVWM_USERDIR]/desktops
+Read $[FVWM_USERDIR]/backer
+Read $[FVWM_USERDIR]/autostarted_applications
+Read $[FVWM_USERDIR]/functions
+Read $[FVWM_USERDIR]/focus_policy
+Read $[FVWM_USERDIR]/keybindings_and_mouse
+Read $[FVWM_USERDIR]/main_menu
+Read $[FVWM_USERDIR]/preferences_menu
+Read $[FVWM_USERDIR]/window_menu
+Read $[FVWM_USERDIR]/themes/$[fvwm_theme]/colorsets
+Read $[FVWM_USERDIR]/themes/$[fvwm_theme]/fonts
+Read $[FVWM_USERDIR]/themes/$[fvwm_theme]/menu_style
+Read $[FVWM_USERDIR]/themes/$[fvwm_theme]/titlebar
+Read $[FVWM_USERDIR]/per-application_rules
+Read $[FVWM_USERDIR]/test
+
+

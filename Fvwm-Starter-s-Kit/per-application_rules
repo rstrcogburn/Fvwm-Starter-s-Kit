@@ -1,0 +1,2 @@
+Style "quake-term" !Title, !Handles, !Borders, !Icon, WindowListSkip
+Style "FvwmConsole" !Title, !Handles, !Borders, !Icon, WindowListSkip

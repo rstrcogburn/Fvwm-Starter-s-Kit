@@ -1,0 +1,16 @@
+#  Couple of settings you would
+#  definitely need:
+#  
+#  Ignore CapsLock and NumLock
+#  modifiers so that they do not 
+#  mess up your configuration:
+
+IgnoreModifiers 2L
+
+#  Resize and move windows instead
+#  of 'borders':
+
+OpaqueMoveSize unlimited
+Style * ResizeOpaque
+
+

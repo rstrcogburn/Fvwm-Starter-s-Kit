@@ -1,0 +1,111 @@
+#  THIS FILE IS NOT A PART OF CONFIGURATION
+#  It is just a set of different functions
+#  with brief explanations what they do.
+#  
+#  You can use them (or not) in your setup -
+#  just copy ones you like to functions 
+#  file and bind them.
+#
+#  Once you wrote a function, you 
+#  can invoke it from anywhere in
+#  your fvwm config and bind it
+#  to hotkey or mouse or window
+#  decoration button or a menu item.
+#  
+#  Binding functions to keys and
+#  buttons is described in keybindings_and_mouse
+#  file. Detailed explanation of
+#  functions syntax can be found in
+#  fvwm beginner's guide or in a
+#  manual.
+#  
+#  Here are some functions most
+#  stacking window managers users
+#  would like to work out of the box:
+
+
+#  Close window - for titlebar button
+#  and keybinding
+
+DestroyFunc DeleteWin
+AddToFunc DeleteWin
++ I Delete
+
+#  Fully maximize window
+
+DestroyFunc FullMaxWin
+AddToFunc FullMaxWin
++ I Maximize 100 100
+
+#  Iconify and deiconify window
+
+DestroyFunc IconWin
+AddToFunc IconWin
++ I Iconify
+
+#  Maximize window on doubleclick 
+
+DestroyFunc MaxTitle
+AddToFunc MaxTitle
++ D Maximize 100 100 
+
+#  Toggle 'always on top'
+
+DestroyFunc WinOnTop
+AddToFunc WinOnTop
++ I ThisWindow (Layer 6) Layer
++ I TestRc (NoMatch) Layer 0 6
+
+#  And here is some more or less
+#  fancy stuff:
+
+#  Take screenshot of the window
+#  (From beginner's guide, requires
+#  imagemagick
+
+DestroyFunc FvwmWindowScreenshot
+AddToFunc   FvwmWindowScreenshot
++ I ThisWindow (!Shaded !Iconic Iconifiable) \
+  Exec import -window $[w.id] -quality 100 -silent \
+  "~/screenshot/screenshot-`date +%F[%R]`.$[w.id].jpg"
+
+#  Same for the whole desktop:
+
+DestroyFunc FvwmDesktopScreenshot
+AddToFunc   FvwmDesktopScreenshot
++ I Exec sleep $0; import -window root -quality 100 -silent \
+  "~/screenshot/screenshot-`date +%F[%R]`.jpg"
+
+#  Autoshade functions set. It mimics
+#  Kwin autoshade feature: definite
+#  window unshades when cursor is 
+#  over the titlebar, stays unshaded
+#  while cursor is in the window and
+#  shades when it leaves.
+#  
+#  It also showcases fvwm State command,
+#  setting and checking window states
+#  and performing actions on windows 
+#  having this or that state along with
+#  FvwmAuto module.
+#  
+#  You can define up to 32 states (0-31)
+#  
+#  In this config State 0 is reserved for
+#  autoshade function
+
+DestroyFunc ToggleAutoshaded
+AddToFunc ToggleAutoshaded
++ I State 0
+
+DestroyFunc AutoShade
+AddToFunc AutoShade
++ I ThisWindow (State 0) WindowShade True
+
+DestroyFunc AutoUnshade
+AddToFunc AutoUnshade
++ I ThisWindow (State 0) WindowShade False
+
+Module FvwmAuto 0 -menter "Silent AutoUnshade" "Silent AutoShade"
+
+

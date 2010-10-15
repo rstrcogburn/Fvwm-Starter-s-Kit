@@ -1,0 +1,21 @@
+DestroyModuleConfig Testie: * 
+*Testie: Rows 2
+*Testie: Columns 2
+*Testie: BoxSize smart
+*Testie: (1x2, Swallow(UseOld,NoKill,NoClose) '*gedit*')
+*Testie: (1x1, Swallow(UseOld,NoKill,NoClose) '*Namo*')
+*Testie: (1x1, Swallow(UseOld,NoKill,NoClose) '*@asus:~/.*')
+
+DestroyFunc Tiler
+AddToFunc Tiler
++ I Exec exec touch $[FVWM_USERDIR]/tmp/$0
++ I Exec exec echo "DestroyModuleConfig $0: *" > $[FVWM_USERDIR]/tmp/$0
++ I Exec exec echo "*$0: Rows 2" >> $[FVWM_USERDIR]/tmp/$0
++ I Exec exec echo "*$0: Columns 2" >> $[FVWM_USERDIR]/tmp/$0
++ I Exec exec echo "*$0: BoxSize smart" >> $[FVWM_USERDIR]/tmp/$0
++ I Wait Pick Exec exec echo "*$0: (1x2, Swallow(UseOld,NoKill,NoClose) "$[w.name]")" >> $[FVWM_USERDIR]/tmp/$0
++ I Wait Pick Exec exec echo "*$0: (1x1, Swallow(UseOld,NoKill,NoClose) "$[w.name]")" >> $[FVWM_USERDIR]/tmp/$0
++ I Wait Pick Exec exec echo "*$0: (1x1, Swallow(UseOld,NoKill,NoClose) "$[w.name]")" >> $[FVWM_USERDIR]/tmp/$0
+#+ I READ $[FVWM_USERDIR]/tmp/$0
+#+ I FvwmButtons $0
+

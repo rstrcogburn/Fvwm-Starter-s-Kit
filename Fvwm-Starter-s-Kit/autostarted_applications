@@ -1,0 +1,44 @@
+#  Specify the applications you would
+#  like to start with fvwm.
+#  
+#  Typically they are panel, tray, system
+#  monitor, power manager, network manager,
+#  an application to display wallpaper, 
+#  clipboard manager, applications like 
+#  internet messengers and mail clients
+#  and whatever you want. 
+#
+#  InitFunction is executed when you start
+#  fvwm:
+
+DestroyFunc InitFunction
+AddToFunc   InitFunction
++ I Exec exec command --option --if --necessary
+
+#  These who use more than one keyboard
+#  layouts can set up layouts switching
+#  here:
+
+#  setxkbmap -layout  "us,ru(winkeys)" -model "pc105" -option "grp:alt_shift_toggle,grp_led:scroll"
+
+#  For advanced switching options try fbxkb, 
+#  xneur etc.
+#
+#  Unlike InitFunction, StartFunction is 
+#  executed each time fvwm is started AND 
+#  restarted.
+#  Make sure you start FVWM modules you need
+#  here as shown below:
+#  
+#  Try FvwmBacker to set different wallpapers
+#  for different pages and different desktops
+#  (see backer file for details)
+
+
+DestroyFunc StartFunction
+AddToFunc StartFunction
++ I Module FvwmCommandS
++ I Module FvwmAnimate
++ I Module FvwmButtons
++ I Module FvwmBacker
++ I Module FvwmAnimate

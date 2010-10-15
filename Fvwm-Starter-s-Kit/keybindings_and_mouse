@@ -1,0 +1,66 @@
+#  fvwm's special: the keybindings.
+#  The syntax is 
+#  Key (optionally - window name) Your_Key_Name Context Modifier Action
+#
+#  - You can optionally define a hotkey depending on active window
+#  title.
+#  Type the exact window title or use symbols and wildcards in brackets,
+#  e.g. (gedit) or (*edit*).
+#
+#  - Your_Key_Name is any key except for modifiers, name can be obtained
+#  using xev except for PrtSc which is Print
+#
+#  - Contexts understood by fvwm are:
+#
+#  R - Root window
+#  I - Iconified window
+#  F - window decoration corner
+#  S - window decoration side
+#  T - window decoration title
+#  W - active window
+#  0-9 - titlebar buttons (see corresponding file)
+#  M - Menu
+#  A - any context
+#
+#  You can combine contexts: FWST etc.
+#
+#  - Modifiers are:
+#  ctrl - C
+#  super - 4
+#  alt - 1
+#  shift - S
+#  caps - L
+#  num - 2
+#
+#  Again, you can combine modifiers: 1S, 4S, etc. 
+#  
+#  If you use multiple desktops, set desktop switching 
+#  here, the command is GotoDesk 0...n
+#  Here are some bindings to manage your windows and
+#  launch some applications, but you can set much
+#  more of them and tune them really fine.
+#  Use Exec exec to run applications.
+
+Key F4 W M DeleteWin
+Key Tab A M WindowList Root NoGeometry
+Key M A M Module FvwmConsole
+Key F2 A 1 Exec exec $[fvwm_runner]
+Key Space A 4 Menu MainMenu
+Key t A 4 Exec exec $[fvwm_terminal]
+Key f A 4 Exec exec $[fvwm_filemanager]
+Key e A 4 Exec exec $[fvwm_editor]
+Key w A 4 Exec exec $[fvwm_browser]
+Key Print A N Exec exec scrot
+
+#  Mouse bindings are set the same way as
+#  key bindings, look at the examples which 
+#  make fvwm mimic mainstream window managers 
+#  functionality:
+
+Key Grave A C QLikeLaunch $[fvwm_terminal] quake-term 812 360 275 0
+Key Q A 4 QLikeFvwmConsole  812 360 275 408
+Key F2 A 1 Exec exec $[fvwm_runner]
+Key t A 4 LaunchRaiseSwitch urxvt $[fvwm_terminal] 
+Key f A 4 LaunchRaiseSwitch *File*Browser $[fvwm_filemanager]
+Key e A 4 LaunchRaiseSwitch *gedit $[fvwm_editor]
+Key w A 4 LaunchRaiseSwitch *Namoroka $[fvwm_browser]
